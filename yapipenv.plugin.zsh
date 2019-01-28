@@ -4,7 +4,6 @@ yapipenv-check() {
     # Exit if you are outside the pipenv project directory
     export PIPFILE_PATH=""
     deactivate
-    return
   fi
 
   if [ ! "$PIPFILE_PATH" ]; then
