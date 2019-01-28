@@ -6,7 +6,7 @@ yapipenv-check() {
     return
   fi
 
-  if [ ! "$PIPENV_ACTIVE" ]; then
+  if [ ! "$PIPFILE_PATH" ]; then
     PIPFILE_PATH="$(pipenv --where 2>/dev/null)"
 
     if [ "$PIPFILE_PATH" ]; then
