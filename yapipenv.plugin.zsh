@@ -2,6 +2,7 @@ yapipenv-check() {
   
   if [[ $PWD/ != $PIPFILE_PATH/* ]] && [ "$PIPFILE_PATH" ]; then
     # Exit if you are outside the pipenv project directory
+    export MYPYPATH=${MYPYPATH#"$VIRTUALENV,"}
     export PIPFILE_PATH=""
     deactivate
   fi
@@ -11,7 +12,9 @@ yapipenv-check() {
 
     if [ "$PIPFILE_PATH" ]; then
       # Pipenv environment has not been activated
-      . $(pipenv --venv)/bin/activate
+      export VIRTUALENV=$(pipenv --venv)
+      . $VIRTUALENV/bin/activate
+      export MYPYPATH=$VIRTUALENV,$MYPYPATH
       export PIPFILE_PATH
     fi
   fi
