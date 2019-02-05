@@ -14,7 +14,7 @@ yapipenv-check() {
       # Pipenv environment has not been activated
       export VIRTUALENV=$(pipenv --venv)
       . $VIRTUALENV/bin/activate
-      export MYPYPATH=$VIRTUALENV,$MYPYPATH
+      export MYPYPATH=$VIRTUALENV/lib/*/site-packages,$MYPYPATH
       export PIPFILE_PATH
     fi
   fi
