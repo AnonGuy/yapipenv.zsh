@@ -12,9 +12,11 @@ yapipenv-check() {
     if [ "$PIPENV_ACTIVE" ]; then
       # Pipenv environment has not been activated
       VIRTUALENV="$(pipenv --venv 2>/dev/null)"
-      . $VIRTUALENV/bin/activate
-      export PIPVENV=$(eval "echo $VIRTUALENV/lib/*/site-packages")
-      export PIPENV_ACTIVE
+      if [[ $VIRTUALENV ]]; then
+        . $VIRTUALENV/bin/activate
+        export PIPVENV=$(eval "echo $VIRTUALENV/lib/*/site-packages")
+        export PIPENV_ACTIVE
+      fi
     fi
   fi
 
