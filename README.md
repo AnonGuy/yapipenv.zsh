@@ -7,7 +7,6 @@ I've written this plugin to fix issues that I've had with existing pipenv integr
 - Activate the environment **silently**, without needing to start `pipenv shell`, which visibly enters the activation command.
 - Deactivate the virtual environment when you are outside the directory that it was activated in.
 - If you switch between directories that are part of different pipenv projects, this plugin will **deactivate the original project, and activate the current one** without needing to `cd .` repeatedly.
-- **Fix missing imports for mypy** by appending the virtual environment's `site-packages` to the `MYPYPATH` variable.
 - **Enable pipenv's tab completions** so you don't need to use another plugin.
 
 ## Installation

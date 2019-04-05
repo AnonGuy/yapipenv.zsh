@@ -1,22 +1,20 @@
 yapipenv-check() {
   
-  if [[ $PWD/ != $PIPFILE_PATH/* ]] && [ "$PIPFILE_PATH" ]; then
+  if [[ $PWD/ != $PIPENV_ACTIVE/* ]] && [ "$PIPENV_ACTIVE" ]; then
     # Exit if you are outside the pipenv project directory
-    export MYPYPATH=${MYPYPATH#"$PIPVENV,"}
-    export PIPFILE_PATH=""
+    export PIPENV_ACTIVE=""
     deactivate
   fi
 
-  if [ ! "$PIPFILE_PATH" ]; then
-    PIPFILE_PATH="$(pipenv --where 2>/dev/null)"
+  if [ ! "$PIPENV_ACTIVE" ]; then
+    PIPENV_ACTIVE="$(pipenv --where 2>/dev/null)"
 
-    if [ "$PIPFILE_PATH" ]; then
+    if [ "$PIPENV_ACTIVE" ]; then
       # Pipenv environment has not been activated
       VIRTUALENV=$(pipenv --venv)
       . $VIRTUALENV/bin/activate
       export PIPVENV=$(eval "echo $VIRTUALENV/lib/*/site-packages")
-      export MYPYPATH=$PIPVENV,$MYPYPATH
-      export PIPFILE_PATH
+      export PIPENV_ACTIVE
     fi
   fi
 
